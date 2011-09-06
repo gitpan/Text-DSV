@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 # Version.
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 # Constructor.
 sub new {
@@ -78,40 +78,102 @@ Text::DSV - DSV parser and serializer.
 =head1 SYNOPSIS
 
  my $obj = Text::DSV->new;
- $obj->parse($data);
- $obj->parse_line($line);
- $obj->serialize(@data_lines);
- $obj->serialize_line(@data_line);
+ my @data_lines = $obj->parse($data);
+ my @data_line = $obj->parse_line($line);
+ my $string = $obj->serialize(@data_lines);
+ my $line_string = $obj->serialize_line(@data_line);
 
 =head1 METHODS
 
-=over 4
+=over 8
 
-=item * C<new>
+=item C<new>
 
  Constructor.
 
-=item * C<parse($data)>
+=item C<parse($data)>
 
  Parse all data.
+ Returns array of arrays of data.
 
-=item * C<parse_line($line)>
+=item C<parse_line($line)>
 
  Parse one line.
+ Returns array of data.
 
-=item * C<serialize(@data_lines)>
+=item C<serialize(@data_lines)>
 
  Serialize all data.
+ Returns string.
 
-=item * C<serialize_line(@data_line)>
+=item C<serialize_line(@data_line)>
 
  Serialize one line.
+ Returns line string.
 
 =back
 
+=head1 EXAMPLE1
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Dumpvalue;
+ use Text::DSV;
+
+ # Object.
+ my $dsv = Text::DSV->new;
+
+ # Parse data.
+ my @datas = $dsv->parse(<<'END');
+ 1:2:3
+ # Comment
+ 
+ 4:5:6
+ END
+
+ # Dump data.
+ my $dump = Dumpvalue->new;
+ $dump->dumpValues(\@datas);
+
+ # Output like this:
+ # 0  ARRAY(0x8fcb6c8)
+ #    0  ARRAY(0x8fd31a0)
+ #       0  1
+ #       1  2
+ #       2  3
+ #    1  ARRAY(0x8fd3170)
+ #       0  4
+ #       1  5
+ #       2  6
+
+=head1 EXAMPLE2
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use Text::DSV;
+
+ # Object.
+ my $dsv = Text::DSV->new;
+
+ # Serialize.
+ print $dsv->serialize(
+	[1, 2, 3],
+	[4, 5, 6],
+ );
+
+ # Output:
+ # 1:2:3
+ # 4:5:6
+
 =head1 SEE ALSO
 
-L<Text::CSV>,
+L<Text::CSV>.
 
 =head1 REPOSITORY
 
@@ -129,6 +191,6 @@ BSD license.
 
 =head1 VERSION
 
-0.01
+0.02
 
 =cut
