@@ -1,3 +1,6 @@
+0.03
+- Test::Pod not usable in Perl lesser then 5.8.0. Fix this.
+
 0.02 (September 06, 2011)
 - Add test comment.
 - Doc improvement.
