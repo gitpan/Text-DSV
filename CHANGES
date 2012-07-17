@@ -1,3 +1,7 @@
+0.05 (July 17, 2012)
+- Update build system.
+- Update META.yml to right values.
+
 0.04 (July 16, 2012)
 - Add examples/ directory.
 - Fix Makefile.PL to META 1.4.
