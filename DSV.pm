@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 # Version.
-our $VERSION = 0.06;
+our $VERSION = 0.07;
 
 # Constructor.
 sub new {
@@ -57,8 +57,8 @@ sub serialize_line {
 	my ($self, @data_line) = @_;
 	my @escape_data = @data_line;
 	foreach my $data (@escape_data) {
-		$data =~ s/:/\\:/ms;
-		$data =~ s/\n/\\n/ms;
+		$data =~ s/:/\\:/gms;
+		$data =~ s/\n/\\n/gms;
 	}
 	return join ':', @escape_data;
 }
@@ -191,6 +191,6 @@ BSD license.
 
 =head1 VERSION
 
-0.06
+0.07
 
 =cut
