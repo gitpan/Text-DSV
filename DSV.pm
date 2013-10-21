@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 # Version.
-our $VERSION = 0.07;
+our $VERSION = 0.08;
 
 # Constructor.
 sub new {
@@ -36,8 +36,8 @@ sub parse_line {
 	my ($self, $line) = @_;
 	my @data_line = split m/(?<!\\):/ms, $line;
 	foreach my $data (@data_line) {
-		$data =~ s/\\:/:/ms;
-		$data =~ s/\\n/\n/ms;
+		$data =~ s/\\:/:/gms;
+		$data =~ s/\\n/\n/gms;
 	}
 	return @data_line;
 }
@@ -191,6 +191,6 @@ BSD license.
 
 =head1 VERSION
 
-0.07
+0.08
 
 =cut

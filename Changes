@@ -1,3 +1,7 @@
+0.08 2013-10-21
+ - Add new tests for multiple escaped characters in parsing.
+ - Fix parsing multiple escaped characters.
+
 0.07 2013-10-18
  - Add new tests for multiple escaped characters in input data.
  - Fix serializing multiple escaped characters in input data.
