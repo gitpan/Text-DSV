@@ -1,3 +1,6 @@
+0.09 2013-11-07
+ - Add minimal Perl version.
+
 0.08 2013-10-21
  - Add new tests for multiple escaped characters in parsing.
  - Fix parsing multiple escaped characters.
